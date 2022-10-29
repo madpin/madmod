@@ -24,3 +24,30 @@ func Hello(name string) string {
     return message
 }
 ```
+
+## Errors
+That was nice and all, but let's change `greetings` to `madmod` right? =]  
+
+Plus, some more changes to the now: `madmod.go`:
+```go
+package madmod
+
+import (
+	"errors"
+	"fmt"
+)
+
+// Hello returns a greeting for the named person.
+func Hello(name string) (string, error) {
+	// If no name was given, return an error with a message.
+	if name == "" {
+		return "", errors.New("empty name")
+	}
+
+	// If a name was received, return a value that embeds the name
+	// in a greeting message.
+	message := fmt.Sprintf("Hi, %v. Welcome!", name)
+	return message, nil
+}
+```
+
